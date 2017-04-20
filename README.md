@@ -32,8 +32,8 @@ java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.c
 Afterwards you need to connect to the database engine console and use a Bulk Load command.
 e.g., in Postgresql use the psql command to establish a connection and load each table in the schema.
 ```bash
-psql -h Portgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
-COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
+> psql -h Portgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
+> COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
 ```
 
 (Provide the location for your configuration file and for the directory where the files will be placed)

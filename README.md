@@ -23,18 +23,22 @@ Before you continue ensure that:
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
 ```
 # C. Populate
-Before running HTAPBench, you will need to load data into the database.
+Before running HTAPBench, you will need to load data into the database. You have 2 choices:
 
-You have 2 choices:
-	- Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)
-	
+1. Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)
 ```bash
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
 ```
+Afterwards you need to connect to the database engine console and use a Bulk Load command.
+e.g., in Postgresql use the psql command to establish a connection and load each table in the schema.
+```bash
+psql -h Portgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
+COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
+```
 
-		(Provide the location for your configuration file and for the directory where the files will be placed)
+(Provide the location for your configuration file and for the directory where the files will be placed)
 
-	(b) 
+2. Populate the database directly from HTAPBench (internallt establishes a connection and performs insert statements). 
 
 
 

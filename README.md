@@ -26,9 +26,11 @@ Before you continue ensure that:
 Before running HTAPBench, you will need to load data into the database.
 You have 2 choices:
 	(a) Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)
+	
 ```bash
 			java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
-		```
+```
+
 		(Provide the location for your configuration file and for the directory where the files will be placed)
 
 	(b) 

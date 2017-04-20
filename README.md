@@ -1,4 +1,4 @@
-HTAPBench
+# HTAPBench
 
 The Hybrid Transactional and Analytical Processing Benchmark is targeted at assessing engines capable of delivering mixed workloads composed of OLTP transactions and OLAP business queries without resorting to ETL.
 
@@ -8,12 +8,12 @@ There are a few requirements to run HTAPBench:
 
 ===
 
-A. To compile HTAPBench:
+# A. To compile HTAPBench:
 '''bash
 	mvn clean compile package
 '''
 
-B. Configure HTAPBench:
+# B. Configure HTAPBench:
 
 1. Clone and adjust the configuration file in config/htapb_config_postgres.xml to you test case.
 
@@ -28,7 +28,7 @@ Before running HTAPBench, you will need to load data into the database.
 	 	java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c config/htapb_config_postgres.xml --create true --load false --generateFiles false --filePath ~/Desktop/ --execute false --calibrate false
 	 '''
 
-C. Populate
+# C. Populate
 
 You have 2 choices:
 	(a) Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)

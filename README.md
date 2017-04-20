@@ -47,9 +47,37 @@ java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.c
 
 # C. Run Tests
 Before running any tests ensure that the previous stage was successfully completed. 
+
+Then run:
 ```bash
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c config/htapb_config_postgres.xml --create false --load false --execute true --s 120 --calibrate false
 ```
+
+# Publications
+If you are using this framework for your papers or for your work, please cite the paper:
+
+HTAPBench: Hybrid Transactional and Analytical Processing Benchmark 
+Fábio Coelho, João Paulo, Ricardo Vilaça, José Pereira, Rui Oliveira
+Proceedings of the 8th ACM/SPEC on International Conference on Performance Engineering
+
+@inproceedings{Coelho:2017:HHT:3030207.3030228,
+ author = {Coelho, F\'{a}bio and Paulo, Jo\~{a}o and Vila\c{c}a, Ricardo and Pereira, Jos{\'e} and Oliveira, Rui},
+ title = {HTAPBench: Hybrid Transactional and Analytical Processing Benchmark},
+ booktitle = {Proceedings of the 8th ACM/SPEC on International Conference on Performance Engineering},
+ series = {ICPE '17},
+ year = {2017},
+ isbn = {978-1-4503-4404-3},
+ location = {L'Aquila, Italy},
+ pages = {293--304},
+ numpages = {12},
+ url = {http://doi.acm.org/10.1145/3030207.3030228},
+ doi = {10.1145/3030207.3030228},
+ acmid = {3030228},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {benchmarking, htap, olap, oltp},
+} 
+
 
 
 

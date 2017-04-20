@@ -54,7 +54,7 @@ java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.c
 ```
 
 # Publications
-If you are using this framework for your papers or for your work, please cite the paper:
+If you are using this benchmark for your papers or for your work, please cite the paper:
 
 HTAPBench: Hybrid Transactional and Analytical Processing Benchmark 
 Fábio Coelho, João Paulo, Ricardo Vilaça, José Pereira, Rui Oliveira

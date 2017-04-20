@@ -3,7 +3,7 @@
 The Hybrid Transactional and Analytical Processing Benchmark is targeted at assessing engines capable of delivering mixed workloads composed of OLTP transactions and OLAP business queries without resorting to ETL.
 
 There are a few requirements to run HTAPBench:
-1. You need to have JAVA distribution installed on the machine running HTAPBench.
+1. You need to have JAVA distribution (> 1.7) installed on the machine running HTAPBench.
 2. You need to have installed the JDBC driver for the database you want to test.
 
 # A. Build HTAPBench:
@@ -15,10 +15,10 @@ There are a few requirements to run HTAPBench:
 Clone and adjust the configuration file in config/htapb_config_postgres.xml to you test case.
 
 Before you continue ensure that:
-	- The database engine you wish to test is installed and that you reach it from the machine running HTAPBench.
-	- In the database engine to be tested, create a test database e.g., htapb.
-	- In the database engine to be tested, create a user/password and grant all privileges to your test database.
-	- In the database engine to be tested, install the database schema.
+- The database engine you wish to test is installed and that you reach it from the machine running HTAPBench.
+- In the database engine to be tested, create a test database e.g., htapb.
+- In the database engine to be tested, create a user/password and grant all privileges to your test database.
+- In the database engine to be tested, install the database schema.
 ```bash
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
 ```

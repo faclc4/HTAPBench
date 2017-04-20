@@ -3,10 +3,10 @@
 The Hybrid Transactional and Analytical Processing Benchmark is targeted at assessing engines capable of delivering mixed workloads composed of OLTP transactions and OLAP business queries without resorting to ETL.
 
 There are a few requirements to run HTAPBench:
-1. You need to have JAVA distribuiton installed on the machine running HTAPBench.
-2. You need to have installed the JDBC driver for the databse you want to test.
+1. You need to have JAVA distribution installed on the machine running HTAPBench.
+2. You need to have installed the JDBC driver for the database you want to test.
 
-# A. To compile HTAPBench:
+# A. Build HTAPBench:
 ```bash
 	mvn clean compile package
 ```
@@ -17,7 +17,7 @@ Clone and adjust the configuration file in config/htapb_config_postgres.xml to y
 Before you continue ensure that:
 	- The database engine you wish to test is installed and that you reach it from the machine running HTAPBench.
 	- In the database engine to be tested, create a test database e.g., htapb.
-	- In the database engine to be tested, create a user/password and grant all priviledges to your test database.
+	- In the database engine to be tested, create a user/password and grant all privileges to your test database.
 	- In the database engine to be tested, install the database schema.
 ```bash
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
@@ -32,13 +32,15 @@ java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.c
 Afterwards you need to connect to the database engine console and use a Bulk Load command.
 e.g., in Postgresql use the psql command to establish a connection and load each table in the schema.
 ```bash
-> psql -h Portgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
+> psql -h Postgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
 > COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
 ```
 
-(Provide the location for your configuration file and for the directory where the files will be placed)
+2. Populate the database directly from HTAPBench. This internally establishes a connection and performs insert statements.
+```bash
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --load true --execute false --calibrate true
+```
 
-2. Populate the database directly from HTAPBench (internallt establishes a connection and performs insert statements). 
 
 
 

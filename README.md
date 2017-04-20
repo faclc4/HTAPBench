@@ -16,18 +16,21 @@ Clone and adjust the configuration file in config/htapb_config_postgres.xml to y
 
 Before you continue ensure that:
 - The database engine you wish to test is installed and that you reach it from the machine running HTAPBench.
+- That the database engine to be tested is configured with the required memory and that the max_clients allowance is enough for you setup.
 - In the database engine to be tested, create a test database e.g., htapb.
 - In the database engine to be tested, create a user/password and grant all privileges to your test database.
 - In the database engine to be tested, install the database schema.
 ```bash
-java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
 ```
 # C. Populate
-Before running HTAPBench, you will need to load data into the database. You have 2 choices:
+Before running HTAPBench, you will need to load data into the database. The generated workload is computed according to the configured TPS. If you change this parameter, you need to generate the database files again. 
+
+You have 2 choices:
 
 1. Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)
 ```bash
-java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
 ```
 Afterwards you need to connect to the database engine console and use a Bulk Load command.
 e.g., in Postgresql use the psql command to establish a connection and load each table in the schema.
@@ -35,14 +38,18 @@ e.g., in Postgresql use the psql command to establish a connection and load each
 > psql -h Postgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
 > COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
 ```
+(different database engines will have different commands. Check the respective documentation)
 
 2. Populate the database directly from HTAPBench. This internally establishes a connection and performs insert statements.
 ```bash
-java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --load true --execute false --calibrate true
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --load true --execute false --calibrate true
 ```
 
-
-
+# C. Run Tests
+Before running any tests ensure that the previous stage was successfully completed. 
+```bash
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c config/htapb_config_postgres.xml --create false --load false --execute true --s 120 --calibrate false
+```
 
 
 

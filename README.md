@@ -9,7 +9,7 @@ There are a few requirements to run HTAPBench:
 ===
 
 # A. To compile HTAPBench:
-'''bash
+''' bash
 	mvn clean compile package
 '''
 
@@ -24,7 +24,7 @@ Before running HTAPBench, you will need to load data into the database.
 	- In the database engine to be tested, create a test database e.g., htapb.
 	- In the database engine to be tested, create a user/password and grant all priviledges to your test database.
 	- In the database engine to be tested, install the database schema.
-	 '''bash
+	 ''' bash
 	 	java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c config/htapb_config_postgres.xml --create true --load false --generateFiles false --filePath ~/Desktop/ --execute false --calibrate false
 	 '''
 
@@ -32,7 +32,7 @@ Before running HTAPBench, you will need to load data into the database.
 
 You have 2 choices:
 	(a) Generate the CSV files to populate the database. (We recommend this method as it usually loads data faster.)
-		'''bash
+		''' bash
 			java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
 
 		'''

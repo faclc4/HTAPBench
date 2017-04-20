@@ -60,6 +60,8 @@ HTAPBench: Hybrid Transactional and Analytical Processing Benchmark
 Fábio Coelho, João Paulo, Ricardo Vilaça, José Pereira, Rui Oliveira
 Proceedings of the 8th ACM/SPEC on International Conference on Performance Engineering
 
+BibTex:
+```bash
 @inproceedings{Coelho:2017:HHT:3030207.3030228,
  author = {Coelho, F\'{a}bio and Paulo, Jo\~{a}o and Vila\c{c}a, Ricardo and Pereira, Jos{\'e} and Oliveira, Rui},
  title = {HTAPBench: Hybrid Transactional and Analytical Processing Benchmark},
@@ -77,7 +79,7 @@ Proceedings of the 8th ACM/SPEC on International Conference on Performance Engin
  address = {New York, NY, USA},
  keywords = {benchmarking, htap, olap, oltp},
 } 
-
+```
 
 
 

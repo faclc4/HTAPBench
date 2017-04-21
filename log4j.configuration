@@ -1,0 +1,43 @@
+# Set root logger level to INFO and its only appender to A1.
+log4j.rootLogger=INFO, A1
+log4j.rootLogger.layout=org.apache.log4j.PatternLayout
+
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%d{ABSOLUTE} (%F:%L) %-5p - %m%n
+
+# API
+log4j.logger.eu.leanbigdata.htapb=INFO
+log4j.logger.eu.leanbigdata.htapb.api=INFO
+
+# Benchmarks
+log4j.logger.eu.leanbigdata.htpab.benchmarks.tpcc=INFO
+log4j.logger.eu.leanbigdata.htpab.benchmarks.tpch=INFO
+log4j.logger.eu.leanbigdata.htpab.benchmark.htapb=INFO
+
+
+# Loaders
+log4j.logger.eu.leanbigdata.htpab.benchmark.HTAPBLoader=INFO
+
+
+
+!==============================================================================
+! log4j.properties - An example configuration properties file for log4j.
+!
+! Logging levels are:
+! INFO < INFO < WARN < ERROR < FATAL
+!==============================================================================
+
+! turn on the internal log4j INFOging flag so we can see what it is doing
+log4j.INFO=true
+
+!==============================================================================
+! JDBC API layer call logging :
+! INFO shows logging, INFO also shows where in code the jdbc calls were made,
+! setting INFO to true might cause minor slow-down in some environments.
+! If you experience too much slowness, use INFO instead.
+
+! Log only the SQL that is executed.
+log4j.logger.jdbc.sqlonly=INFO,A1
+log4j.additivity.jdbc.sqlonly=true

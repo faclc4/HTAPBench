@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<plugins>
+    <plugin name="htapb">pt.haslab.htapbench.benchmark.HTAPBenchmark</plugin>
+</plugins>

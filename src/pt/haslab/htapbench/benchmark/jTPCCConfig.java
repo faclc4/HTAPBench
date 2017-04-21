@@ -1,0 +1,73 @@
+/*
+ * Copyright 2017 by INESC TEC                                               
+ * Developed by Fábio Coelho                                                 
+ * This work was based on the OLTPBenchmark Project                          
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");           
+ * you may not use this file except in compliance with the License.          
+ * You may obtain a copy of the License at                                   
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0                              
+ *
+ * Unless required by applicable law or agreed to in writing, software       
+ * distributed under the License is distributed on an "AS IS" BASIS,         
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+ * See the License for the specific language governing permissions and       
+ * limitations under the License.                                            
+ */
+package pt.haslab.htapbench.benchmark;
+
+/*
+ * jTPCCConfig - Basic configuration parameters for jTPCC
+ *
+ * Copyright (C) 2003, Raul Barbosa
+ * Copyright (C) 2004-2006, Denis Lussier
+ *
+ */
+
+import java.text.SimpleDateFormat;
+
+public final class jTPCCConfig {
+
+	// TODO: This was final; Modified by TPCCRateLimited. Better system?
+	public static boolean TERMINAL_MESSAGES = true;
+
+	public static enum TransactionType {
+		INVALID, // Exists so the order is the same as the constants below
+		NEW_ORDER, PAYMENT, ORDER_STATUS, DELIVERY, STOCK_LEVEL
+	}
+
+	// TODO: Remove these constants
+	public final static int NEW_ORDER = 1, PAYMENT = 2, ORDER_STATUS = 3,
+			DELIVERY = 4, STOCK_LEVEL = 5;
+
+	public final static String[] nameTokens = { "BAR", "OUGHT", "ABLE", "PRI",
+			"PRES", "ESE", "ANTI", "CALLY", "ATION", "EING" };
+
+	public final static String terminalPrefix = "Term-";
+	public final static String reportFilePrefix = "reports/BenchmarkSQL_session_";
+
+	public final static SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+	public final static int configCommitCount = 1000; // commit every n records
+	public final static int configWhseCount = 1;
+	public final static int configItemCount = 100000; // tpc-c std = 100,000
+	public final static int configDistPerWhse = 10; // tpc-c std = 10
+	public final static int configCustPerDist = 3000; // tpc-c std = 3,000
+
+	/** An invalid item id used to rollback a new order transaction. */
+	public static final int INVALID_ITEM_ID = -12345;
+        
+        public static final long thinkTime = 0;
+        
+        public static final long keyingTime_NewOrder = 18000;
+        public static final long keyingTime_Payment = 3000;
+        public static final long keyingTime_Delivery = 2000;
+        public static final long keyingTime_OrderStatus = 2000;
+        public static final long keyingTime_StockLevel = 2000;
+        
+        //the max tpmC considered accordinf to TPC-C specification [pag. 61 - clause 4.2].
+        public static final double max_tmpC = 1.281;
+        
+}

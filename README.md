@@ -33,10 +33,11 @@ You have 2 choices
 java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --generateFiles true --filePath dir --execute false --calibrate true
 ```
 Afterwards you need to connect to the database engine console and use a Bulk Load command.
-e.g., in Postgresql use the psql command to establish a connection and load each table in the schema.
+e.g., in Postgresql use the psql command to establish a connection and load each (e.g., WAREHOUSE and OORDER) table in the schema. 
 ```bash
 > psql -h Postgres_host_IP -p Postgres_host_port -U postgres_user -d database_name
-> COPY WAREHOUSE FROM '/dir/warehouse.csv' USING DELIMITERS ',';
+> COPY WAREHOUSE FROM '/dirwarehouse.csv' USING DELIMITERS ',';
+> COPY OORDER FROM '/dirorder.csv' USING DELIMITERS ',' WITH NULL as 'null';
 ```
 (different database engines will have different commands. Check the respective documentation)
 

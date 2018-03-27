@@ -30,7 +30,6 @@ public class Q2 extends GenericQuery {
         String region = random.getRandomRegion();
         region = region.substring(0, region.length()-1)+"%";
         String i_data = "%"+random.generateRandomCharacter();
-        //String i_quantity = ""+RandomParameters.randBetween(1, 50);
         String query ="SELECT su_suppkey, "
             +        "su_name, "
             +        "n_name, "

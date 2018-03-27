@@ -29,6 +29,8 @@ package pt.haslab.htapbench.benchmark;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import org.apache.log4j.Logger;
 
 import pt.haslab.htapbench.procedures.tpcc.TPCCProcedure;
 import pt.haslab.htapbench.densitity.Clock;
@@ -100,7 +102,7 @@ public class TPCCWorker extends Worker {
             setThinkTime(thinkTime()+proc.getKeyingTime());
             
             //waits the required ThinkTime per txn.
-            //Thread.sleep(getThinkTime());
+            Thread.sleep(getThinkTime());
             
             
         } catch (ClassCastException ex){
@@ -111,9 +113,9 @@ public class TPCCWorker extends Worker {
 	        conn.rollback();
                 System.err.println("TPC-C txn will restart "+ex.getMessage());
 	        return (TransactionStatus.RETRY_DIFFERENT);
-	    }/* catch (InterruptedException ex) {
-                Logger.getLogger(TPCCWorker.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+	    } catch (InterruptedException ex) { 
+                java.util.logging.Logger.getLogger(TPCCWorker.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		transactionCount++;
         conn.commit();
         return (TransactionStatus.SUCCESS);

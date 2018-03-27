@@ -1,0 +1,1 @@
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b htapb -c config/htapb_config_postgres.xml --create true --load true --generateFiles true --filePath ~/Desktop/ --execute false --s 120 --calibrate false

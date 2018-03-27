@@ -122,7 +122,12 @@ public class HTAPBenchmark extends BenchmarkModule {
 
 	@Override
 	protected Loader makeLoaderImpl(Connection conn, boolean calibrate, boolean generateFiles, String fileLocation) throws SQLException {
+            if(conn==null && generateFiles){
+                return new HTAPBCSVLoader(this, calibrate, fileLocation, this.density);
+            }
+            else{
 		return new HTAPBLoader(this, conn, calibrate, generateFiles, fileLocation, this.density);
+            }
 	}
 
         /**

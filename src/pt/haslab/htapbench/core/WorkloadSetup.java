@@ -72,6 +72,10 @@ public class WorkloadSetup {
         return this.warehouses;
     }
     
+    public void setWarehouses(int warehouses){
+        this.warehouses=warehouses;
+    }
+    
     /**
      * Returns the number of computer Terminals.
      * @return 

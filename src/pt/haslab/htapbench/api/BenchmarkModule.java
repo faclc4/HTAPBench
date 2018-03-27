@@ -273,12 +273,25 @@ public abstract class BenchmarkModule {
      */
     public final void loadDatabase(boolean calibrate,boolean generateFiles, String filesPath) {
         try {
-            Connection conn = this.makeConnection();
+            Connection conn = null;
+            if(!generateFiles){
+                conn = this.makeConnection();
+            }
             this.loadDatabase(conn,calibrate,generateFiles,filesPath);
-            conn.close();
+            if(conn !=null){
+                conn.close();
+            }
         } catch (SQLException ex) {
             throw new RuntimeException(String.format("Unexpected error when trying to load the %s database", this.benchmarkName), ex);
         }
+    }
+    
+    /**
+     * Invoke this benchmark's database loader
+     */
+    public final void generateCSVDatabase(boolean calibrate,boolean generateFiles, String filesPath) {
+            this.loadDatabase(null,calibrate,generateFiles,filesPath);
+
     }
 
     /**
@@ -289,9 +302,13 @@ public abstract class BenchmarkModule {
         try {
             Loader loader = this.makeLoaderImpl(conn, calibrate,generateFiles,filesPath);
             if (loader != null) {
-                conn.setAutoCommit(false);
+                if(conn!=null){
+                    conn.setAutoCommit(false);
+                }
                 loader.load();
-                conn.commit();
+                if(conn!= null){
+                    conn.commit();
+                }
 
                 if (loader.getTableCounts().isEmpty() == false) {
                     LOG.info("Table Counts:\n" + loader.getTableCounts());

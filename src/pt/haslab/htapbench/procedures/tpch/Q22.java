@@ -34,11 +34,11 @@ public class Q22 extends GenericQuery {
         String code6 = random.getRandomPhoneCountryCode();
         String code7 = random.getRandomPhoneCountryCode();
         
-        String query = "SELECT substr(c_state from 1 for 1) AS country, "
+        String query = "SELECT substring(c_state from 1 for 1) AS country, "
             + "count(*) AS numcust, "
             + "sum(c_balance) AS totacctbal "
             + "FROM " +HTAPBConstants.TABLENAME_CUSTOMER 
-            + " WHERE substr(c_phone from 1 for 2) IN ('"+code1+"', "
+            + " WHERE substring(c_phone from 1 for 2) IN ('"+code1+"', "
             +                                    "'"+code2+"', "
             +                                    "'"+code3+"', "
             +                                    "'"+code4+"', "
@@ -50,7 +50,7 @@ public class Q22 extends GenericQuery {
             +      "FROM "
             +      HTAPBConstants.TABLENAME_CUSTOMER
             +      " WHERE c_balance > 0.00 "
-            +      "AND substr(c_phone from 1 for 2) IN ('"+code1+"',"
+            +      "AND substring(c_phone from 1 for 2) IN ('"+code1+"',"
             +                                              "'"+code2+"',"
             +                                              "'"+code3+"',"
             +                                              "'"+code4+"',"
@@ -64,8 +64,8 @@ public class Q22 extends GenericQuery {
             +      " WHERE o_c_id = c_id "
             +        "AND o_w_id = c_w_id "
             +        "AND o_d_id = c_d_id) "
-            + "GROUP BY substr(c_state from 1 for 1) "
-            + "ORDER BY substr(c_state,1,1)";
+            + "GROUP BY substring(c_state from 1 for 1) "
+            + "ORDER BY substring(c_state,1,1)";
         return new SQLStmt(query);
     }
 	

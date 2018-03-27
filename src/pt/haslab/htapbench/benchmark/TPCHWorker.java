@@ -44,11 +44,11 @@ public class TPCHWorker extends Worker {
     @Override
     protected TransactionStatus executeWork(TransactionType nextTransaction,ResultSetResult rows) throws UserAbortException, SQLException {
         try {
-            Class<? extends Procedure> p = nextTransaction.getProcedureClass();            
-            Procedure getProc = this.getProcedure(p);
+            //Class<? extends Procedure> p = nextTransaction.getProcedureClass();            
+            //Procedure getProc = this.getProcedure(p);
             
-            //GenericQuery proc = (GenericQuery) this.getProcedure(nextTransaction.getProcedureClass());
-            GenericQuery proc = (GenericQuery) getProc;
+            GenericQuery proc = (GenericQuery) this.getProcedure(nextTransaction.getProcedureClass());
+            //GenericQuery proc = (GenericQuery) getProc;
             proc.setOwner(this);           
             int resultSetRowNumber = proc.run(conn,clock,super.getWorkloadConfiguration());
             rows.setRows(resultSetRowNumber);

@@ -1,0 +1,59 @@
+COPY FILES FROM CSV TO DATABASE:
+
+MONETDB:
+COPY INTO WAREHOUSE FROM '/var/csv/warehouse.csv' USING DELIMITERS ',';
+COPY INTO HISTORY FROM '/var/csv/cust-hist.csv' USING DELIMITERS ',';
+COPY INTO DISTRICT FROM '/var/csv/district.csv' USING DELIMITERS ',';
+COPY INTO NATION FROM '/var/csv/nation.csv' USING DELIMITERS ',';
+COPY INTO OORDER FROM '/var/csv/order.csv' USING DELIMITERS ',';
+COPY INTO REGION FROM '/var/csv/region.csv' USING DELIMITERS ',';
+COPY INTO SUPPLIER FROM '/var/csv/supplier.csv' USING DELIMITERS ',';
+COPY INTO CUSTOMER FROM '/var/csv/customer.csv' USING DELIMITERS ',';
+COPY INTO ITEM FROM '/var/csv/item.csv' USING DELIMITERS ',';
+COPY INTO NEW_ORDER FROM '/var/csv/new-order.csv' USING DELIMITERS ',';
+COPY INTO ORDER_LINE FROM '/var/csv/order-line.csv' USING DELIMITERS ',';
+COPY INTO STOCK FROM '/var/csv/stock.csv' USING DELIMITERS ',';
+
+POSTGRESQL:
+COPY WAREHOUSE FROM '/var/csv/warehouse.csv' USING DELIMITERS ',';
+COPY HISTORY FROM '/var/csv/cust-hist.csv' USING DELIMITERS ',';
+COPY DISTRICT FROM '/var/csv/district.csv' USING DELIMITERS ',';
+COPY NATION FROM '/var/csv/nation.csv' USING DELIMITERS ',';
+COPY REGION FROM '/var/csv/region.csv' USING DELIMITERS ',';
+COPY OORDER FROM '/var/csv/order.csv' USING DELIMITERS ',' NULL AS 'null';
+COPY SUPPLIER FROM '/var/csv/supplier.csv' USING DELIMITERS ',';
+COPY CUSTOMER FROM '/var/csv/customer.csv' USING DELIMITERS ',';
+COPY ITEM FROM '/var/csv/item.csv' USING DELIMITERS ',';
+COPY NEW_ORDER FROM '/var/csv/new-order.csv' USING DELIMITERS ',';
+COPY ORDER_LINE FROM '/var/csv/order-line.csv' USING DELIMITERS ',';
+COPY STOCK FROM '/var/csv/stock.csv' USING DELIMITERS ',';
+
+LX:
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t warehouse -f /var/csv/warehouse.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t history -f /var/csv/cust-hist.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t district -f /var/csv/district.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t nation -f /var/csv/nation.csv -y , -u app -i app -x 1
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t region -f /var/csv/region.csv -y , -u app -i app -x 1
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t supplier -f /var/csv/supplier.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t new_order -f /var/csv/new-order.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t item -f /var/csv/item.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t order_line -f /var/csv/order-line.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t stock -f /var/csv/stock.csv -y , -u app -i app -x 8
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t oorder -f /var/csv/order.csv -y , -u app -i app -x 8
+
+
+
+python csv_loader.py -p examples/htapb-cloudinhas.yaml -s htapb -t customer -f /var/csv/customer.csv -y , -u app -i app -x 8
+
+
+
+
+
+
+
+APPEND SUFFIX TO ALL FILES IN A FOLDER:
+rename 's/\.csv$/\.csv-1600wh/' *.csv
+
+cust-hist.csv  district.csv  nation.csv     order.csv       region.csv  supplier.csv
+customer.csv   item.csv      new-order.csv  order-line.csv  stock.csv   warehouse.csv
+

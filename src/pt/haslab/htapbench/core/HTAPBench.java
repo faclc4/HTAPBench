@@ -276,6 +276,7 @@ public class HTAPBench {
             }
             //OLAP
             else if(isBooleanOptionSet(argsLine, "olap")){
+                setup.setWarehouses(xmlConfig.getInt("warehouses"));
                 wrkld.setScaleFactor(xmlConfig.getDouble("warehouses"));
                 terminals = (int)xmlConfig.getDouble("OLAP_workers");
                 wrkld.setOLAPTerminals(terminals);

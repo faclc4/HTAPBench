@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<parameters>
+	
+    <!-- Connection details -->
+    <dbtype>postgres</dbtype>
+    <DBName>HTAPB</DBName>
+    <driver>org.postgresql.Driver</driver> 
+    <DBUrl>jdbc:postgresql://localhost:5432/htapb</DBUrl>
+    <username>postgres_user</username>
+    <password>postgres_password</password>
+    <isolation>TRANSACTION_READ_COMMITTED</isolation>
+
+    <!-- HTAPB only-->
+    <target_TPS>1</target_TPS>
+    <error_margin>0.2</error_margin>
+
+    <!-- For a solo OLTP or OLAP workload-->
+    <!-- OLTP & OLAP only -->
+    <warehouses>2</warehouses>
+
+    <!-- For a solo OLAP workload-->
+    <!-- OLAP workers -->
+    <OLAP_workers>10</OLAP_workers>
+ 
+    <!-- The workload -->
+    <works>
+        <work>
+          <!-- time in minutes-->   
+          <time>120</time>
+	  <!-- First txn should always be the NewOrder - This is imposed by HTAPB -->
+      <!-- The first 5 are the TPC-C transactions. The Remainder are the TPC-H queries. Total sould sum 200-->
+          <weights>45,44,4,4,3,3,2,3,2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5</weights>
+        </work>
+	</works>
+	
+	<!-- TPCC specific -->  
+   	<transactiontypes>
+    	<transactiontype>
+    		<name>NewOrder</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Payment</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>OrderStatus</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Delivery</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>StockLevel</name>
+    	</transactiontype>
+	<transactiontype>
+    		<name>Q1</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q2</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q3</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q4</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q5</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q6</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q7</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q8</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q9</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q10</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q11</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q12</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q13</name>
+    	</transactiontype>    	
+    	<transactiontype>
+    		<name>Q14</name>
+    	</transactiontype>      
+    	<transactiontype>
+    		<name>Q15</name>
+    	</transactiontype>   
+    	<transactiontype>
+    		<name>Q16</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q17</name>
+    	</transactiontype>   
+    	<transactiontype>
+    		<name>Q18</name>
+    	</transactiontype>   
+    	<transactiontype>
+    		<name>Q19</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q20</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q21</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Q22</name>
+    	</transactiontype>
+   	</transactiontypes>	
+</parameters>

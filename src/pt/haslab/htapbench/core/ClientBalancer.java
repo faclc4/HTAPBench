@@ -222,16 +222,9 @@ public class ClientBalancer implements Runnable{
                 
                 if(!saturated  && output < this.error_margin*this.projected_TPM){   
                     this.olapStreams++;
-                    
-                    int OLAP2Lauch = ((Double)(this.error_margin*this.projected_TPM % this.error)).intValue();
-                    LOG.info("OLAP2Lauch "+OLAP2Lauch);
-                    //Updates the number of OLAP workers in LeanXcale.
-                    
-                    //Lauches one OLAP client
-                    for(int z=0;z<OLAP2Lauch;z++){
-                        this.workersOLAP.addAll(benchmarkModule.makeOLAPWorker(verbose,clock));
-                        LOG.info("ClientBalancer: Going to lauch 1 OLAP stream. Total OLAP STreams: "+ workersOLAP.size());
-                    }
+                   
+                    this.workersOLAP.addAll(benchmarkModule.makeOLAPWorker(verbose,clock));
+                    LOG.info("ClientBalancer: Going to lauch 1 OLAP stream. Total OLAP STreams: "+ workersOLAP.size());
                 }
                 else{
                     saturated=true;
@@ -239,27 +232,7 @@ public class ClientBalancer implements Runnable{
                     LOG.info("         ClientBalancer: The system is saturated. No more OLAP streams will be lauched.");
                     LOG.info("***************************************************************************************************");
                 }
-                
-                
-                int tpm_delta = computeTPM_Accelaration(this.TPMS, requests, deltaT);
-                LOG.info("TPM_delta "+tpm_delta);
-
-                int ammount=((Double)Math.pow(2,power)).intValue();    
-                if(output < 0 && ammount < 50){
-                    
-                    for(int p=0;p<ammount;p++){
-                        this.workersOLAP.addAll(benchmarkModule.makeOLAPWorker(verbose,clock));
-                        LOG.info("ClientBalancer: Going to lauch 1 OLAP stream. Total OLAP STreams: "+ workersOLAP.size());
-                    }
-                    power=power+1;
-                }
-                else{
-                    if(this.workersOLAP.size()>0){
-                        //this.terminateOLAPWorker(power);
-                        //power=power-1;
-                    }
-                }    
- 
+               
                 LOG.info("***************************************************************************************************");
                 LOG.info("                          #ACTIVE OLAP STREAMS: "+workersOLAP.size());
                 LOG.info("***************************************************************************************************");

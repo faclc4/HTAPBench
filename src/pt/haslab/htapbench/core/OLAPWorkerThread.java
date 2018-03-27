@@ -36,8 +36,6 @@ public class OLAPWorkerThread implements Runnable{
         this.workers=workers;
         this.workConfs=workConfs;
         String connection = this.workConfs.get(0).getDBConnection();
-        //LeanX
-        connection = connection+";parallel=1";
         this.workConfs.get(0).setDBConnection(connection);
         this.intervalMonitor=intervalMonitoring;
         this.calibrate=calibrate;

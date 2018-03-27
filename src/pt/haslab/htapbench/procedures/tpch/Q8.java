@@ -59,7 +59,7 @@ public class Q8 extends GenericQuery {
                     + "c_id = o_c_id AND "
                     + "c_w_id = o_w_id AND "
                     + "c_d_id = o_d_id AND "
-                    + "substr(n1.n_name,1,1) = substr(c_state,1,1) AND "
+                    + "substring(n1.n_name,1,1) = substring(c_state,1,1) AND "
                     + "n1.n_regionkey = r_regionkey AND "
                     + "ol_i_id < "+quantity+" AND "
                     + "r_name = '"+region+"' AND "

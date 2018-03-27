@@ -55,14 +55,14 @@ public class Q7 extends GenericQuery {
             +   "AND c_w_id = o_w_id "
             +   "AND c_d_id = o_d_id "
             +   "AND su_nationkey = n1.n_nationkey "
-            +   "AND substr(c_state,1,1) = substr(n2.n_name,1,1) "
+            +   "AND substring(c_state,1,1) = substring(n2.n_name,1,1) "
             +   "AND ((n1.n_name = '"+nation1+"' "
             +         "AND n2.n_name = '"+nation2+"') "
             +        "OR (n1.n_name = '"+nation2+"' "
             +            "AND n2.n_name = '"+nation1+"')) "
             +            "AND ol_delivery_d between '"+ts1.toString()+"' and '"+ts2.toString()
             + "' GROUP BY su_nationkey "
-            + "ORDER BY su_nationkey, "
+            + "ORDER BY su_nationkey"
             ;
         return new SQLStmt(query);
     }

@@ -873,34 +873,21 @@ public class HTAPBench {
         //      COLLECT RESULTS
         //***************************
         //Thread.sleep(1000*60*2);
-        Results tpcc = null;
-        Results tpch = null;
-        
-        try{
-            tpcc = oltp_runnable.getResults();
-            tpch = olap_runnable.getResults();
-        }
-        catch(NullPointerException e){
-
-        }
+        Results tpcc = oltp_runnable.getResults();
+        Results tpch = olap_runnable.getResults();
         
         boolean proceed = false;
         while(!proceed){
             
-            if(tpcc != null || tpch != null){
+            if(tpcc != null && tpch != null){
                 proceed = true;
-                break;
             }
             else{
-                try{
-                    tpcc = oltp_runnable.getResults();
-                    tpch = olap_runnable.getResults();
-                }
-                catch(NullPointerException e){
-                    
-                }
                 LOG.info("[HTAPB Thread]: Still waiting for results from OLTP and OLAP workers. Going to sleep for 1 minute..." );
                 Thread.sleep(60000);
+
+                tpcc = oltp_runnable.getResults();
+                tpch = olap_runnable.getResults();
             }
         }
         
@@ -947,31 +934,19 @@ public class HTAPBench {
         //      COLLECT RESULTS
         //***************************
         //Thread.sleep(1000*60*2);
-        Results tpcc = null;
-        
-        try{
-            tpcc = oltp_runnable.getResults();
-        }
-        catch(NullPointerException e){
-
-        }
+        Results tpcc = oltp_runnable.getResults();
         
         boolean proceed = false;
         while(!proceed){
             
             if(tpcc != null){
                 proceed = true;
-                break;
             }
             else{
-                try{
-                    tpcc = oltp_runnable.getResults();
-                }
-                catch(NullPointerException e){
-                    
-                }
                 LOG.info("[HTAPB Thread]: Still waiting for results from OLTP workers. Going to sleep for 1 minute..." );
                 Thread.sleep(60000);
+
+                tpcc = oltp_runnable.getResults();
             }
         }    
         //Thread.sleep(1000*60*2);
@@ -1013,31 +988,19 @@ public class HTAPBench {
         //      COLLECT RESULTS
         //***************************
         //Thread.sleep(1000*60*2);
-        Results tpch = null;
-        
-        try{
-            tpch = olap_runnable.getResults();
-        }
-        catch(NullPointerException e){
-
-        }
+        Results tpch = olap_runnable.getResults();
         
         boolean proceed = false;
         while(!proceed){
             
             if(tpch != null){
                 proceed = true;
-                break;
             }
             else{
-                try{
-                    tpch = olap_runnable.getResults();
-                }
-                catch(NullPointerException e){
-                    
-                }
-                LOG.info("[HTAPB Thread]: Still waiting for results from OLTP and OLAP workers. Going to sleep for 1 minute..." );
+                LOG.info("[HTAPB Thread]: Still waiting for results from OLAP workers. Going to sleep for 1 minute..." );
                 Thread.sleep(60000);
+
+                tpch = olap_runnable.getResults();
             }
         }
         //Thread.sleep(1000*60*2);

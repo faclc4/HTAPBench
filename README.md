@@ -23,7 +23,7 @@ Before you continue ensure that:
 - In the database engine to be tested, create a user/password and grant all privileges to your test database.
 - In the database engine to be tested, install the database schema.
 ```bash
-java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --create true --load false --generateFiles false --filePath dir --execute false --calibrate false
+java -cp .:target/htapbench-0.95-jar-with-dependencies.jar pt.haslab.htapbench.core.HTAPBench -b database_name -c your_config_file.xml --create true --load false --generateFiles false --filePath yourdir/ --execute false --calibrate false
 ```
 # C. Populate
 Before running HTAPBench, you will need to load data into the database. The generated workload is computed according to the configured TPS. If you change this parameter, you need to generate the database files again. 

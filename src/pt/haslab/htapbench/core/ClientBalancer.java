@@ -220,7 +220,7 @@ public class ClientBalancer implements Runnable{
                 LOG.info("output: "+ output);
                 LOG.info("error: "+this.error);
                 
-                if(!saturated  && output < this.error_margin*this.projected_TPM){   
+                if(this.olapStreams == 0 || (!saturated  && output < this.error_margin*this.projected_TPM)){   
                     this.olapStreams++;
                    
                     this.workersOLAP.addAll(benchmarkModule.makeOLAPWorker(verbose,clock));

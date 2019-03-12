@@ -30,6 +30,11 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* This class is used for keeping track of the procedures that have been
+* submitted to the system when running a rate-limited benchmark.
+* @author breilly
+*/
 package pt.haslab.htapbench.core;
 
 public class SubmittedProcedure {

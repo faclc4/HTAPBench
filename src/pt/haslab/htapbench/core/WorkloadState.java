@@ -30,6 +30,9 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+@author alendit
+*/
 package pt.haslab.htapbench.core;
 
 import pt.haslab.htapbench.api.Worker;

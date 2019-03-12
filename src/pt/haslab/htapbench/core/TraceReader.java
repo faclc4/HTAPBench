@@ -30,6 +30,11 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* WorkloadState, in order to repeat a given execution of a benchmark.
+*
+* @author breilly
+*/
 package pt.haslab.htapbench.core;
 
 import java.io.BufferedReader;

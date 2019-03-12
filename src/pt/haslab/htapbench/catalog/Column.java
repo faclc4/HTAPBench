@@ -33,8 +33,9 @@
 package pt.haslab.htapbench.catalog;
 
 /**
- * Column Catalog Object
- */
+* Column Catalog Object
+* @author pavlo
+*/
 public class Column extends AbstractCatalogObject implements Cloneable {
 	private static final long serialVersionUID = 1L;
 	

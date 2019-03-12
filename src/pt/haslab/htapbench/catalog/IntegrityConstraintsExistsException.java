@@ -33,8 +33,9 @@
 package pt.haslab.htapbench.catalog;
 
 /**
- * 
- */
+* 
+* @author Carlo A. Curino (carlo@curino.us)
+*/
 public class IntegrityConstraintsExistsException extends Exception {
 
     private static final long serialVersionUID = 1L;

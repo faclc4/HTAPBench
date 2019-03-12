@@ -29,6 +29,11 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* List of the database management systems that we support 
+* in the framework.
+* @author pavlo
+ */
 package pt.haslab.htapbench.types;
 
 import java.util.EnumSet;

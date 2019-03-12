@@ -39,8 +39,11 @@ import java.util.List;
 
 
 /**
- * Table Catalog Object
- */
+* Table Catalog Object
+* @author Carlo A. Curino (carlo@curino.us)
+* @author pavlo
+* @author Djellel
+*/
 public class Table extends AbstractCatalogObject {
 	private static final long serialVersionUID = 1L;
 	

@@ -30,6 +30,10 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* @author pavlo
+* @author Djellel
+*/
 package pt.haslab.htapbench.util;
 
 import java.math.BigInteger;

@@ -30,6 +30,11 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* A very nice and simple generic Histogram
+* @author svelagap
+* @author pavlo
+*/
 package pt.haslab.htapbench.util;
 
 import java.io.*;

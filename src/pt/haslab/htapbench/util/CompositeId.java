@@ -30,6 +30,10 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+/**
+* Pack multiple values into a single long using bit-shifting
+* @author pavlo
+*/
 package pt.haslab.htapbench.util;
 
 import java.io.IOException;

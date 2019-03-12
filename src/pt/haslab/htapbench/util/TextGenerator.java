@@ -36,8 +36,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Fast Random Text Generator
- */
+* Fast Random Text Generator
+* @author pavlo
+*/
 public abstract class TextGenerator {
     
     private static final int CHAR_START = 32; // [space]

@@ -30,6 +30,11 @@
  * See the License for the specific language governing permissions and       
  * limitations under the License. 
  */
+
+/**
+* Base Catalog Object Class
+* @author pavlo
+*/
 package pt.haslab.htapbench.catalog;
 
 import java.io.Serializable;

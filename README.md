@@ -1,5 +1,7 @@
 # HTAPBench
 
+HTAPBench is derived from from OLTPBenchmark framework @ https://github.com/oltpbenchmark/oltpbench
+
 The Hybrid Transactional and Analytical Processing Benchmark is targeted at assessing engines capable of delivering mixed workloads composed of OLTP transactions and OLAP business queries without resorting to ETL.
 
 There are a few requirements to run HTAPBench:

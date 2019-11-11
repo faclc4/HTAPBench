@@ -71,6 +71,7 @@ public class ClientBalancer implements Runnable{
     protected int olapStreams = 0;
     private boolean saturated = false;
     private boolean terminate =false;
+    private int olapWorkersPerCylce = 1;
     
     private Clock clock = null;
     
@@ -88,6 +89,7 @@ public class ClientBalancer implements Runnable{
         this.intervalMonitor=intervalMonitor;
         this.targetTPS = benchModule.getWorkloadConfiguration().getTargetTPS();
         this.nclients = benchModule.getWorkloadConfiguration().getTerminals();
+        this.olapWorkersPerCylce = benchModule.getWorkloadConfiguration().getOLAPTerminals();
         this.projected_TPM = this.targetTPS * this.deltaT;
         
         
@@ -221,10 +223,11 @@ public class ClientBalancer implements Runnable{
                 LOG.info("error: "+this.error);
                 
                 if(this.olapStreams == 0 || (!saturated  && output < this.error_margin*this.projected_TPM)){   
-                    this.olapStreams++;
                    
                     this.workersOLAP.addAll(benchmarkModule.makeOLAPWorker(verbose,clock));
-                    LOG.info("ClientBalancer: Going to lauch 1 OLAP stream. Total OLAP STreams: "+ workersOLAP.size());
+                    this.olapStreams++;
+                    
+                    LOG.info("ClientBalancer: Going to lauch "+ this.olapWorkersPerCylce +" OLAP stream. Total OLAP Streams: "+ workersOLAP.size());
                 }
                 else{
                     saturated=true;

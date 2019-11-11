@@ -5,27 +5,30 @@
     <dbtype>postgres</dbtype>
     <DBName>HTAPB</DBName>
     <driver>org.postgresql.Driver</driver> 
-    <DBUrl>jdbc:postgresql://<host_fuly_qualified_path>:5432/htapb</DBUrl>
+    <DBUrl>jdbc:postgresql://192.168.82.100:5432/htapb</DBUrl>
     <username>postgres_user</username>
-    <password>postgres_password</password>
+    <password>postgres_pass</password>
     <isolation>TRANSACTION_READ_COMMITTED</isolation>
 
     <!-- HTAPB only-->
-    <target_TPS>1</target_TPS>
+    <target_TPS>5</target_TPS>
     <error_margin>0.2</error_margin>
 
     <!-- For a solo OLTP or OLAP workload-->
     <!-- OLTP & OLAP only -->
     <warehouses>35</warehouses>
 
-    <!-- For a solo OLAP workload-->
-    <!-- OLAP workers -->
+    <!-- If you want to force the number of OLTP workers -->
+    <!-- 0: Auto HTAPBench other: number of workers-->
+    <OLTP_workers>0</OLTP_workers>
+
+    <!-- Number of OLAP workers launched in each evaluation cycle -->
     <OLAP_workers>10</OLAP_workers>
  
     <!-- The workload -->
     <works>
         <work>
-          <!-- time in minutes-->   
+          <!-- time in seconds-->   
           <time>120</time>
 	  <!-- First txn should always be the NewOrder - This is imposed by HTAPB -->
       <!-- The first 5 are the TPC-C transactions. The Remainder are the TPC-H queries. Total sould sum 200-->

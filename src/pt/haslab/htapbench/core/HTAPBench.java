@@ -278,14 +278,24 @@ public class HTAPBench {
             }
             
             int terminals;
+            int olapTerminals;
             boolean rateLimited;
             
             
             //OLTP
             if(isBooleanOptionSet(argsLine, "oltp")){
                 wrkld.setScaleFactor(xmlConfig.getDouble("warehouses"));
-                terminals = (int)xmlConfig.getDouble("warehouses")*10;
-                wrkld.setTerminals(terminals);    
+                terminals = (int)xmlConfig.getDouble("OLTP_workers");
+                if(terminals != 0){
+                    System.out.println("|--------------------------------------------|");
+                    System.out.println("| NON standard # OLTP workers "+terminals+ "|");
+                    System.out.println("|--------------------------------------------|");
+                    wrkld.setTerminals(terminals);
+                }
+                else{             
+                    terminals = (int)xmlConfig.getDouble("warehouses")*10;
+                    wrkld.setTerminals(terminals);  
+                }
                 rateLimited = false;
                 //NoTarget
             }
@@ -299,9 +309,19 @@ public class HTAPBench {
             }
             else{
                 //HTAP
-                wrkld.setTerminals(setup.getTerminals());
-                terminals=setup.getTerminals();
-                wrkld.setOLAPTerminals(1);
+                terminals = (int)xmlConfig.getDouble("OLTP_workers");
+                if(terminals != 0){
+                    System.out.println("|--------------------------------------------|");
+                    System.out.println("| NON standard # OLTP workers "+terminals+ "|");
+                    System.out.println("|--------------------------------------------|");
+                    wrkld.setTerminals(terminals);
+                }
+                else{             
+                    terminals = (int)xmlConfig.getDouble("warehouses")*10;
+                    wrkld.setTerminals(terminals);  
+                }
+                olapTerminals = (int)xmlConfig.getDouble("OLAP_workers");
+                wrkld.setOLAPTerminals(olapTerminals);
                 wrkld.setScaleFactor(setup.getWarehouses());
                 wrkld.setTargetTPS(setup.getTargetTPS());
                 error_margin = (double)xmlConfig.getDouble("error_margin");
@@ -313,17 +333,17 @@ public class HTAPBench {
             LOG.debug("------------- Workload properties --------------------");
             LOG.debug("      Target TPS: "+ setup.getTargetTPS());
             LOG.debug("      # warehouses: "+ setup.getWarehouses());
-            LOG.debug("      #terminals: "+ setup.getTerminals());
+            LOG.debug("      #OLTP terminals: "+ setup.getTerminals());
             LOG.debug("------------------------------------------------------");
             
             // ----------------------------------------------------------------
             // CREATE BENCHMARK MODULE
             // ----------------------------------------------------------------
 
-            String classname = pluginConfig.getString("/plugin[@name='" + plugin + "']");
-
-            if (classname == null)
-                throw new ParseException("Plugin " + plugin + " is undefined in config/plugin.xml");
+            //String classname = pluginConfig.getString("/plugin[@name='" + plugin + "']");
+            String classname = "pt.haslab.htapbench.core.HTAPBench";
+            //if (classname == null)
+            //    throw new ParseException("Plugin " + plugin + " is undefined in config/plugin.xml");
             BenchmarkModule bench = new HTAPBenchmark(wrkld);
             Map<String, Object> initDebug = new ListOrderedMap<String, Object>();
             initDebug.put("Benchmark", String.format("%s {%s}", plugin.toUpperCase(), classname));
@@ -421,7 +441,19 @@ public class HTAPBench {
             
             WorkloadConfiguration workConf = bench.getWorkloadConfiguration();
             workConf.setScaleFactor(setup.getWarehouses());
-            workConf.setTerminals(setup.getTerminals());
+            
+            terminals = (int)xmlConfig.getDouble("OLTP_workers");
+            if(terminals != 0){
+                System.out.println("|--------------------------------------------|");
+                System.out.println("| NON standard # OLTP workers "+terminals+ "|");
+                System.out.println("|--------------------------------------------|");
+                wrkld.setTerminals(terminals);
+            }
+            else{             
+                terminals = (int)xmlConfig.getDouble("warehouses")*10;
+                workConf.setTerminals(setup.getTerminals());
+            }
+            
             workConf.setTargetTPS(setup.getTargetTPS());
             workConf.setFilesPath(generateFilesPath);
             bench.setWorkloadConfiguration(workConf);
@@ -497,6 +529,7 @@ public class HTAPBench {
                 }
 
                 int time = work.getInt("/time", 0);
+                System.out.println("time is: "+time);
                 timed = (time > 0);
                 if (scriptRun) {
                     LOG.info("Running a script; ignoring timer, serial, and weight settings.");
